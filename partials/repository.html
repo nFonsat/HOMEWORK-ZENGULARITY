@@ -1,0 +1,42 @@
+<header class="header-app">
+    <div>
+        <h1>{{'app.title' | translate}}</h1>
+        <a class="logo-github" href="https://github.com/nFonsat"></a>
+    </div>
+</header>
+<section class="section-homepage">
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+       <li>
+            <a href="" ng-click="canvasCommiter=true" ng-init="canvasCommiter=true">Liste des committers</a>
+        </li>
+        <li>
+            <a href="" ng-click="canvasCommiter=false">Date des commits</a>
+        </li>
+        <li>
+            <a ng-href={{'#/'}} ng-click="canvasCommiter=false">Retour à la page d'accueil</a>
+        </li>
+    </ul>
+    
+    <div class="title-section" ng-if="canvasCommiter">
+        <h2>Commiteurs du répository "{{ titleRepository }}"</h2>
+    </div>
+
+    <canvas id="chart-list-committer" 
+        class="resolution-canvas shadow-canvas" 
+        ng-if="canvasCommiter"
+        data-ng-init="initCommitter()">
+    </canvas>
+
+    <div class="title-section" ng-if="canvasCommiter == false">
+        <h2>Commit du répository "{{ titleRepository }}"</h2>
+    </div>
+
+    <canvas id="chart-list-commit" 
+        class="resolution-canvas shadow-canvas" 
+        ng-if="canvasCommiter == false"
+        data-ng-init="initCommits()">
+    </canvas>
+</section>
+<footer class="footer-app">
+    <p>{{ 'footer' | translate }}</p>
+</footer>

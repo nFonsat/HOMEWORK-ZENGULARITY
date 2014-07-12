@@ -17,6 +17,10 @@ homeworkZengularity.config(['$routeProvider',
                 templateUrl: 'partials/homepage.html',
                 controller: 'HomepageController'
             }).
+            when('/repository/:user/:nameRepository', {
+                templateUrl: 'partials/repository.html',
+                controller: 'RepositoryController'
+            }).
             otherwise({
                 redirectTo: '/'
             });

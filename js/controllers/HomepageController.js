@@ -10,7 +10,6 @@ var homepageController = [
                 success(
                     function (data) {
                         $scope.listRepo = data;
-                        console.log($scope.listRepo)
                     }
                 ).
                 error(

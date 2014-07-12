@@ -13,6 +13,7 @@
     "jquery": "~2.1.x",
     "bootstrap": "~3.2.x",
     "angular-translate": "~2.2.x",
-    "angular-translate-loader-static-files": "~2.2.x"
+    "angular-translate-loader-static-files": "~2.2.x",
+    "Chart.js": "~1.0.x"
   }
 }
