@@ -1,0 +1,75 @@
+.header-app {
+    min-height: 80px;
+    background-color: #f94d4d;
+    border-bottom: 3px solid #970808;
+}
+
+.header-app div{
+    color: white;
+    width: 430px;
+    margin: auto;
+    position: relative;
+}
+
+.header-app h1{
+    margin: 0;
+    font-style: italic;
+}
+
+.header-app h1{
+    padding-top: 20px;
+}
+
+.logo-github {
+    background-repeat: no-repeat;
+    background-image: url(../img/GitHub-Mark-Light-64px.png);
+    height: 64px;
+    width: 64px;
+    position: absolute;
+    right: 0px;
+    top: 5px;
+}
+
+.section-homepage {
+    width: 70%;
+    margin: 20px auto 0px;
+}
+
+.m-top20 {
+    margin-top: 20px;
+}
+
+#list-repository :nth-child(1) {
+    text-align: center;
+}
+
+.footer-app {
+    position: relative;
+    background-color: rgb(168, 168, 168);
+    width: 100%;
+    min-height: 40px;
+    margin-top: 40px;
+}
+
+.footer-app p{
+    position: absolute;
+    text-align: center;
+    color: white;
+    bottom: 0px;
+    width: 100%;
+    margin: 0px;
+    padding-bottom: 5px;
+}
+
+.item-repo-app :nth-child(1) {
+    text-transform: uppercase;
+}
+
+.item-repo-app :nth-child(2) {
+    font-style: italic;
+    float: right;
+}
+
+.title-section {
+    text-align: center;
+}

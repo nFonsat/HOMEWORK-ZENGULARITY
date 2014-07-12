@@ -1,1 +1,43 @@
-{{'app.title' | translate}}
+<header class="header-app">
+    <div>
+        <h1>{{'app.title' | translate}}</h1>
+        <a class="logo-github" href="https://github.com/nFonsat"></a>
+    </div>
+</header>
+<section class="section-homepage">
+    <div class="title-section">
+        <h2>{{ 'homepage.choose_repository' | translate }}</h2>
+    </div>
+    <div class="input-group m-top20">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-folder-open"></span>
+        </span>
+        <input type="text"
+            ng-model="searchRepository.name" 
+            class="form-control" 
+            placeholder="{{ 'homepage.name_repository' | translate }}"
+        >
+    </div>
+    <div class="input-group m-top20">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+        </span>
+        <input type="text"
+            ng-model="searchRepository.owner.login" 
+            class="form-control" 
+            placeholder="{{'homepage.author_repository' | translate}}"
+        >
+    </div>
+    <div id="list-repository" class="list-group m-top20">
+        <a class="list-group-item disabled ">{{ 'homepage.repository' | translate }}</a>
+        <a class="list-group-item item-repo-app"
+        ng-repeat="repo in listRepo  | filter:searchRepository:strict | limitTo:10" 
+        href="">
+            <span>{{ repo.name }}</span>
+            <span>{{ 'homepage.author' | translate }} : {{ repo.owner.login }}</span>
+        </a>
+    </div>
+</section>
+<footer class="footer-app">
+    <p>{{ 'footer' | translate }}</p>
+</footer>

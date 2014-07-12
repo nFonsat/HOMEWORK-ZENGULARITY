@@ -1,5 +1,13 @@
 {
     "app" : {
-        "title": "Homework Zengularity"
-    }
+        "title" : "Homework Zengularity"
+    },
+    "homepage" : {
+        "choose_repository" : "Choisir un repository public",
+        "name_repository" : "Grâce à son nom",
+        "author_repository" : "Grâce à son auteur",
+        "repository" : "Repository public",
+        "author" : "Auteur"
+    },
+    "footer" : "Développer par Nicolas Fonsat - Développeur Informatique"
 }
