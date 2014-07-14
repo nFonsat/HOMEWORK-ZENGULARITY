@@ -1,9 +1,13 @@
 'use strict';
 
 var homeworkZengularity = angular.module('homeworkZengularity', [
+    'ngCookies',
     'ngRoute',
 
     'pascalprecht.translate',
+
+    'graphicServices',
+    'GitHubApiServices',
 
     'homeworkZengularityControllers',
     'homeworkZengularityServices',
@@ -17,9 +21,13 @@ homeworkZengularity.config(['$routeProvider',
                 templateUrl: 'partials/homepage.html',
                 controller: 'HomepageController'
             }).
-            when('/repository/:user/:nameRepository', {
-                templateUrl: 'partials/repository.html',
-                controller: 'RepositoryController'
+            when('/repository/:user/:nameRepository/committer', {
+                templateUrl: 'partials/repository_committer.html',
+                controller: 'RepositoryCommitterController'
+            }).
+            when('/repository/:user/:nameRepository/commit', {
+                templateUrl: 'partials/repository_commit.html',
+                controller: 'RepositoryCommitController'
             }).
             otherwise({
                 redirectTo: '/'

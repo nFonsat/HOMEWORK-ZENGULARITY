@@ -86,3 +86,7 @@
     box-shadow: 1px 3px 10px 0px #656565;
     filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=161, Strength=10);
 }
+
+.button-commit {
+    margin: 0px 0px 5px 30px;
+}

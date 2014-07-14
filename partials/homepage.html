@@ -32,7 +32,7 @@
         <a class="list-group-item disabled ">{{ 'homepage.repository' | translate }}</a>
         <a class="list-group-item item-repo-app"
         ng-repeat="repo in listRepo  | filter:searchRepository:strict | limitTo:10" 
-        ng-href="#/repository/{{ repo.owner.login }}/{{ repo.name }}">
+        ng-href="#/repository/{{ repo.owner.login }}/{{ repo.name }}/committer">
             <span>{{ repo.name }}</span>
             <span>{{ 'homepage.author' | translate }} : {{ repo.owner.login }}</span>
         </a>

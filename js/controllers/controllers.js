@@ -6,4 +6,5 @@ var homeworkZengularityControllers = angular.module( 'homeworkZengularityControl
 
 //On instancie tout les controleurs
 homeworkZengularityControllers.controller( 'HomepageController', homepageController );
-homeworkZengularityControllers.controller( 'RepositoryController', repositoryController );
+homeworkZengularityControllers.controller( 'RepositoryCommitterController', repositoryCommitterController );
+homeworkZengularityControllers.controller( 'RepositoryCommitController', repositoryCommitController );
