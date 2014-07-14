@@ -23,12 +23,31 @@
 
     <div class="title-section">
         <h2>Commits du répository "{{ titleRepository }}"</h2>
+
+        <h3>{{ valueCalendar }}</h3>
+
         <canvas id="chart-list-commit" 
             class="resolution-canvas shadow-canvas"
             data-ng-init="initCommits()">
         </canvas>
+
+        <div class="m-top20">
+            <button type="button" 
+                class="btn btn-danger btn-sm button-commit"
+                ng-click="allCommit()">
+                <span class="glyphicon glyphicon-stats"></span>
+                Tout les commits
+            </button>
+
+            <button type="button" 
+                class="btn btn-danger btn-sm button-commit"
+                ng-repeat="year in tabYears" ng-click="affiner(year)">
+                <span class="glyphicon glyphicon-stats"></span>
+                {{ year }}
+            </button>
+        </div>
     </div>
 </section>
-<footer class="footer-app">
+<footer class="footer-app m-top20">
     <p>{{ 'footer' | translate }}</p>
 </footer>

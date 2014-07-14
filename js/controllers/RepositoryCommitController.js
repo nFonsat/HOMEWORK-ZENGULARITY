@@ -7,9 +7,15 @@ var repositoryCommitController = [
     'colorService',
     '$cookies',
     'GitHubApi',
-    function ($scope, $routeParams, LineChart, colorService, $cookies, GitHubApi){
+    '$location',
+    function ($scope, $routeParams, LineChart, colorService, $cookies, GitHubApi, $location){
         $scope.titleRepository = $routeParams.nameRepository;
         $scope.userRepository = $routeParams.user;
+        $scope.tabYears = new Array();
+        $scope.valueCalendar = "Tous les commits";
+        var listCommit;
+
+        var month = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"]
 
         var labelsLine = [""];
         var pointsLine = [0];
@@ -32,20 +38,92 @@ var repositoryCommitController = [
         };
 
         function getCommit (){
-            var listCommit = GitHubApi.getListCommit();
+            listCommit = GitHubApi.getListCommit();
             for (var i in listCommit) {
+                $scope.tabYears.push(i);
                 LineChart.addPoint(listCommit[i].length, i);
                 pointsLine.push(listCommit[i].length);
             }
             LineChart.lineChart.destroy();
             LineChart.newLineChart(dataLine);
-
         }
 
         $scope.initCommits = function () {
             LineChart.defineContainer("chart-list-commit");
             LineChart.newLineChart(dataLine);
             GitHubApi.loadingCommit($scope.userRepository, $scope.titleRepository, getCommit);
+        }
+
+        $scope.allCommit = function () {
+            $scope.valueCalendar = "Tous les commits";
+            pointsLine = [0];
+            dataLine = {
+                labels: [""],
+                datasets: [
+                    {
+                        label: "DatasetBar",
+                        fillColor: 'rgba(' + colorLine + ',0.2)',
+                        strokeColor: 'rgba(' + colorLine + ',1)',
+                        pointColor: 'rgba(' + colorLine + ',1)',
+                        pointHighlightStroke: 'rgba(' + colorLine + ',1)',
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        data: pointsLine
+                    }
+                ]
+            };
+            LineChart.lineChart.destroy();
+            LineChart.newLineChart(dataLine);
+            
+            for (var i in listCommit) {
+                LineChart.addPoint(listCommit[i].length, i);
+                pointsLine.push(listCommit[i].length);
+            }
+            LineChart.lineChart.destroy();
+            LineChart.newLineChart(dataLine);
+        }
+
+        $scope.affiner = function (key) {
+            $scope.valueCalendar = key;
+            var listMonth = new Array();
+
+            for (var j in listCommit[key]){
+                var numero = listCommit[key][j].date;
+                var nameMonth = month[numero];
+
+                if(listMonth[numero]){
+                    listMonth[numero].push(listCommit[key][j]);
+                } else {
+                    listMonth[numero] = new Array();
+                    listMonth[numero].name = nameMonth;
+                    listMonth[numero].push(listCommit[key][j]);
+                }
+            }
+
+            pointsLine = [0];
+            dataLine = {
+                labels: [""],
+                datasets: [
+                    {
+                        label: "DatasetBar",
+                        fillColor: 'rgba(' + colorLine + ',0.2)',
+                        strokeColor: 'rgba(' + colorLine + ',1)',
+                        pointColor: 'rgba(' + colorLine + ',1)',
+                        pointHighlightStroke: 'rgba(' + colorLine + ',1)',
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        data: pointsLine
+                    }
+                ]
+            };
+            LineChart.lineChart.destroy();
+            LineChart.newLineChart(dataLine);
+            for (var i in listMonth) {
+                LineChart.addPoint(listMonth[i].length, listMonth[i].name);
+                pointsLine.push(listMonth[i].length);
+            }
+            LineChart.lineChart.destroy();
+            LineChart.newLineChart(dataLine);
         }
     }
 ];

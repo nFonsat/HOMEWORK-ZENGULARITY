@@ -35,10 +35,6 @@
     margin: 20px auto 0px;
 }
 
-.m-top20 {
-    margin-top: 20px;
-}
-
 #list-repository :nth-child(1) {
     text-align: center;
 }
@@ -89,4 +85,8 @@
 
 .button-commit {
     margin: 0px 0px 5px 30px;
+}
+
+.m-top20 {
+    margin-top: 20px;
 }

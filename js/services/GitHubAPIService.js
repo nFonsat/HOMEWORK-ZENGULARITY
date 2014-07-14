@@ -74,7 +74,6 @@ GitHubApiServices.service('GitHubApi', [
                     listCommit[dateCommit] = new Array();
                     listCommit[dateCommit].push(commit);
                 }
-                
             }
         }
 
