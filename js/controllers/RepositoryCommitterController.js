@@ -6,7 +6,8 @@ var repositoryCommitterController = [
     'BarChart',
     'colorService',
     'GitHubApi',
-    function ($scope, $routeParams, BarChart, colorService, GitHubApi){
+    '$cookieStore',
+    function ($scope, $routeParams, BarChart, colorService, GitHubApi, $cookieStore){
         $scope.titleRepository = $routeParams.nameRepository;
         $scope.userRepository = $routeParams.user;
 
@@ -36,11 +37,46 @@ var repositoryCommitterController = [
             BarChart.newBarChart(dataBar);
         }
 
+        function isCookies (nameCookies) {
+            if ($cookieStore.get(nameCookies))
+                return true;
+            return false;
+        }
+
+        $scope.savingSearch = function () {
+            var nameCookies = $scope.titleRepository + ':' + $scope.userRepository;
+
+            var data = {
+                nameRepository: $scope.titleRepository,
+                userRepository: $scope.userRepository
+            }
+
+            $cookieStore.put(nameCookies, data);
+
+            $scope.isSaving = true;
+        }
+
+        $scope.removeSearch = function () {
+            var nameCookies = $scope.titleRepository + ':' + $scope.userRepository;
+
+            if (isCookies(nameCookies))
+                $cookieStore.remove(nameCookies);
+
+            $scope.isSaving = false;
+        }
+
         $scope.initCommitter = function () {
             BarChart.defineContainer("chart-list-committer")
             BarChart.newBarChart(dataBar);
             GitHubApi.loadingCommitter($scope.userRepository, $scope.titleRepository, getCommit);
         }
 
+        var nameCookies = $scope.titleRepository + ':' + $scope.userRepository;
+
+        if (isCookies(nameCookies)) {
+            $scope.isSaving = true;
+        } else {
+            $scope.isSaving = false;
+        }
     }
 ];

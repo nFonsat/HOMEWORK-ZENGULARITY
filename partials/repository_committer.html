@@ -1,24 +1,38 @@
 <header class="header-app">
-    <div>
+    <div class="header-app-title">
         <h1>{{'app.title' | translate}}</h1>
-        <a class="logo-github" href="https://github.com/nFonsat"></a>
+        <a class="logo-github" href="https://github.com/nFonsat" target="_blank"></a>
     </div>
 </header>
 <section class="section-homepage">
+    <div class="btn-group" id="button-saving" ng-if="isSaving  == false">
+        <button type="button" class="btn btn-danger btn-xs"  ng-click="savingSearch()">
+            {{ 'repository.saving_research' | translate }}
+            <span class="glyphicon glyphicon-star"></span>
+        </button>
+    </div>
+
+    <div class="btn-group" id="button-saving" ng-if="isSaving">
+        <button type="button" class="btn btn-danger btn-xs" ng-click="removeSearch()">
+            {{ 'repository.remove_research' | translate }}
+            <span class="glyphicon glyphicon-star-empty"></span>
+        </button>
+    </div>
+
     <ul class="nav nav-tabs nav-justified" role="tablist">
        <li class="active">
-            <a ng-href="#/repository/{{ userRepository }}/{{ titleRepository }}/committer">Liste des committers</a>
+            <a ng-href="#/repository/{{ userRepository }}/{{ titleRepository }}/committer">{{ 'repository.list_committer' | translate }}</a>
         </li>
         <li>
-            <a ng-href="#/repository/{{ userRepository }}/{{ titleRepository }}/commit">Liste des commits</a>
+            <a ng-href="#/repository/{{ userRepository }}/{{ titleRepository }}/commit">{{ 'repository.list_commit' | translate }}</a>
         </li>
         <li>
-            <a ng-href={{'#/'}} ng-click=>Retour à la page d'accueil</a>
+            <a ng-href={{'#/'}}>{{ 'repository.back_homepage' | translate }}</a>
         </li>
     </ul>
     
     <div class="title-section">
-        <h2>Committers du répository "{{ titleRepository }}"</h2>
+        <h2>{{ 'repository.committer_repository' | translate }} "{{ titleRepository }}"</h2>
         <canvas id="chart-list-committer" 
             class="resolution-canvas shadow-canvas"
             data-ng-init="initCommitter()">

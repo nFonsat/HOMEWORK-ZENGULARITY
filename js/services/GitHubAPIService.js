@@ -9,6 +9,7 @@ GitHubApiServices.service('GitHubApi', [
     '$cacheFactory',
     function ($http, $cacheFactory){
         var apiGitHub = 'https://api.github.com';
+        var pagination = '?per_page=100';
         var listCommitter = new Array();
         var listCommit = {};
         var cacheCommit;
@@ -64,7 +65,7 @@ GitHubApiServices.service('GitHubApi', [
                 var commit = {
                     nameCommitter : listDataAPI[i].commit.committer.name,
                     message : listDataAPI[i].commit.message,
-                    date : new Date (listDataAPI[i].commit.committer.date).getMonth()
+                    date : new Date (listDataAPI[i].commit.committer.date)
                 }
                 
 
@@ -87,10 +88,11 @@ GitHubApiServices.service('GitHubApi', [
         
         function errorHttp (data, status, headers, config) {
             console.log('error : ' + status);
+            console.log(data.message);
         }
 
         this.getUrlRepository = function (userRepository, nameRepository) {
-            return (apiGitHub + '/repos/' + userRepository + '/' + nameRepository + '/commits');
+            return (apiGitHub + '/repos/' + userRepository + '/' + nameRepository + '/commits' + pagination);
         }
 
         this.getListCommitter = function () {

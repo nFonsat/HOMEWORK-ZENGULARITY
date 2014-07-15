@@ -1,28 +1,73 @@
-<header class="header-app">
-    <div>
-        <h1>{{'app.title' | translate}}</h1>
-        <a class="logo-github" href="https://github.com/nFonsat"></a>
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">{{ 'app.close' | translate }}</span>
+        </button>
+        <h3 class="modal-title" id="myModalLabel">{{ titleRepository }}</h3>
+      </div>
+      <div class="modal-body">
+        <div ng-repeat="(key, value) in list" class="modal-year">
+            <h4>{{ key }}</h4>
+            <div ng-repeat="v in value" class="modal-body-content">
+                <span class="modal-span-first">{{ v.date.toLocaleString() }}</span>
+                <span class="modal-span-second">{{ v.message }}</span>
+                <span class="modal-span-first">{{ 'homepage.author' | translate }} : {{ v.nameCommitter }}</span>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'app.close' | translate }}</button>
+      </div>
     </div>
-    <button type="button" class="btn btn-danger btn-sm button-commit">
-        <span class="glyphicon glyphicon-align-justify"></span>
-        {{ titleRepository }}
-    </button>
+  </div>
+</div>
+
+<header class="header-app">
+    <div class="header-app-title">
+        <h1>{{'app.title' | translate}}</h1>
+        <a class="logo-github" href="https://github.com/nFonsat" target="_blank"></a>
+    </div>
+
+    <div class="btn-group" id="button-commit">
+        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg">
+            {{ titleRepository }}
+            <span class="glyphicon glyphicon-align-justify"></span>
+        </button>
+    </div>
 </header>
 <section class="section-homepage">
+    <div class="btn-group" id="button-saving" ng-if="isSaving  == false">
+        <button type="button" class="btn btn-danger btn-xs"  ng-click="savingSearch()">
+            {{ 'repository.saving_research' | translate }}
+            <span class="glyphicon glyphicon-star"></span>
+        </button>
+    </div>
+
+    <div class="btn-group" id="button-saving" ng-if="isSaving">
+        <button type="button" class="btn btn-danger btn-xs" ng-click="removeSearch()">
+            {{ 'repository.remove_research' | translate }}
+            <span class="glyphicon glyphicon-star-empty"></span>
+        </button>
+    </div>
+
     <ul class="nav nav-tabs nav-justified" role="tablist">
        <li>
-            <a ng-href="#/repository/{{ userRepository }}/{{ titleRepository }}/committer">Liste des committers</a>
+            <a ng-href="#/repository/{{ userRepository }}/{{ titleRepository }}/committer">{{ 'repository.list_committer' | translate }}</a>
         </li>
         <li class="active">
-            <a ng-href="#/repository/{{ userRepository }}/{{ titleRepository }}/commit">Liste des commits</a>
+            <a ng-href="#/repository/{{ userRepository }}/{{ titleRepository }}/commit">{{ 'repository.list_commit' | translate }}</a>
         </li>
         <li>
-            <a ng-href={{'#/'}}>Retour à la page d'accueil</a>
+            <a ng-href={{'#/'}}>{{ 'repository.back_homepage' | translate }}</a>
         </li>
     </ul>
 
     <div class="title-section">
-        <h2>Commits du répository "{{ titleRepository }}"</h2>
+        <h2>{{ 'repository.commit_repository' | translate }}"{{ titleRepository }}"</h2>
 
         <h3>{{ valueCalendar }}</h3>
 
@@ -33,14 +78,14 @@
 
         <div class="m-top20">
             <button type="button" 
-                class="btn btn-danger btn-sm button-commit"
+                class="btn btn-danger btn-sm button-canvas"
                 ng-click="allCommit()">
                 <span class="glyphicon glyphicon-stats"></span>
-                Tout les commits
+                {{ 'repository.all_repository' | translate }}
             </button>
 
             <button type="button" 
-                class="btn btn-danger btn-sm button-commit"
+                class="btn btn-danger btn-sm button-canvas"
                 ng-repeat="year in tabYears" ng-click="affiner(year)">
                 <span class="glyphicon glyphicon-stats"></span>
                 {{ year }}

@@ -5,24 +5,27 @@ var repositoryCommitController = [
     '$routeParams',
     'LineChart',
     'colorService',
-    '$cookies',
+    '$cookieStore',
     'GitHubApi',
-    '$location',
-    function ($scope, $routeParams, LineChart, colorService, $cookies, GitHubApi, $location){
+    '$translate',
+    function ($scope, $routeParams, LineChart, colorService, $cookieStore, GitHubApi, $translate){
         $scope.titleRepository = $routeParams.nameRepository;
         $scope.userRepository = $routeParams.user;
         $scope.tabYears = new Array();
-        $scope.valueCalendar = "Tous les commits";
+        $scope.valueCalendar = $translate.instant('repository.all_repository');
+
         var listCommit;
 
-        var month = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"]
+        if ($translate.use() ==  'fr'){
+            var month = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
+        } else {
+            var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        }
 
-        var labelsLine = [""];
         var pointsLine = [0];
-
         var colorLine = colorService.getColorRVB();
         var dataLine = {
-            labels: labelsLine,
+            labels: [""],
             datasets: [
                 {
                     label: "DatasetBar",
@@ -39,7 +42,9 @@ var repositoryCommitController = [
 
         function getCommit (){
             listCommit = GitHubApi.getListCommit();
+            $scope.list = listCommit;
             for (var i in listCommit) {
+                $scope.list[i].reverse();
                 $scope.tabYears.push(i);
                 LineChart.addPoint(listCommit[i].length, i);
                 pointsLine.push(listCommit[i].length);
@@ -55,7 +60,7 @@ var repositoryCommitController = [
         }
 
         $scope.allCommit = function () {
-            $scope.valueCalendar = "Tous les commits";
+            $scope.valueCalendar = $translate.instant('repository.all_repository');
             pointsLine = [0];
             dataLine = {
                 labels: [""],
@@ -83,12 +88,40 @@ var repositoryCommitController = [
             LineChart.newLineChart(dataLine);
         }
 
+        function isCookies (nameCookies) {
+            if ($cookieStore.get(nameCookies))
+                return true;
+            return false;
+        }
+
+        $scope.savingSearch = function () {
+            var nameCookies = $scope.titleRepository + ':' + $scope.userRepository;
+
+            var data = {
+                nameRepository: $scope.titleRepository,
+                userRepository: $scope.userRepository
+            }
+
+            $cookieStore.put(nameCookies, data);
+
+            $scope.isSaving = true;
+        }
+
+        $scope.removeSearch = function () {
+            var nameCookies = $scope.titleRepository + ':' + $scope.userRepository;
+
+            if (isCookies(nameCookies))
+                $cookieStore.remove(nameCookies);
+
+            $scope.isSaving = false;
+        }
+
         $scope.affiner = function (key) {
             $scope.valueCalendar = key;
             var listMonth = new Array();
 
             for (var j in listCommit[key]){
-                var numero = listCommit[key][j].date;
+                var numero = listCommit[key][j].date.getMonth();
                 var nameMonth = month[numero];
 
                 if(listMonth[numero]){
@@ -124,6 +157,14 @@ var repositoryCommitController = [
             }
             LineChart.lineChart.destroy();
             LineChart.newLineChart(dataLine);
+        }
+
+        var nameCookies = $scope.titleRepository + ':' + $scope.userRepository;
+
+        if (isCookies(nameCookies)) {
+            $scope.isSaving = true;
+        } else {
+            $scope.isSaving = false;
         }
     }
 ];

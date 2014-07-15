@@ -1,13 +1,26 @@
 {
     "app" : {
-        "title" : "Homework Zengularity"
+        "title" : "Homework Zengularity",
+        "close" : "Fermer"
     },
     "homepage" : {
         "choose_repository" : "Choisir un repository public",
         "name_repository" : "Grâce à son nom",
         "author_repository" : "Grâce à son auteur",
         "repository" : "Repository public",
-        "author" : "Auteur"
+        "author" : "Auteur",
+        "find_repository" : "Trouver un repository",
+        "research_saving" : "Recherches sauvegardées"
+    },
+    "repository" : {
+        "saving_research" : "Enregistrer cette recherche",
+        "remove_research" : "Supprimer cette recherche",
+        "list_committer" : "Liste des committers",
+        "list_commit" : "Liste des commits",
+        "back_homepage" : "Retour à la page d'accueil",
+        "commit_repository" : "Commits du répository",
+        "all_repository" : "Tout les commits",
+        "committer_repository" : "Committers du répository"
     },
     "footer" : "Développé par Nicolas Fonsat - Développeur Informatique"
 }

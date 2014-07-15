@@ -1,10 +1,20 @@
 <header class="header-app">
-    <div>
+    <div class="header-app-title">
         <h1>{{'app.title' | translate}}</h1>
-        <a class="logo-github" href="https://github.com/nFonsat"></a>
+        <a class="logo-github" href="https://github.com/nFonsat" target="_blank"></a>
     </div>
 </header>
 <section class="section-homepage">
+    <form class="form-inline f-right" role="form" ng-submit="submit()">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="searchGlobal" placeholder="{{ 'homepage.find_repository' | translate }}">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+    </form>
     <div class="title-section">
         <h2>{{ 'homepage.choose_repository' | translate }}</h2>
     </div>
@@ -31,11 +41,22 @@
     <div id="list-repository" class="list-group m-top20">
         <a class="list-group-item disabled ">{{ 'homepage.repository' | translate }}</a>
         <a class="list-group-item item-repo-app"
-        ng-repeat="repo in listRepo  | filter:searchRepository:strict | limitTo:10" 
+        ng-repeat="repo in listRepo  | filter:searchRepository:strict" 
         ng-href="#/repository/{{ repo.owner.login }}/{{ repo.name }}/committer">
             <span>{{ repo.name }}</span>
             <span>{{ 'homepage.author' | translate }} : {{ repo.owner.login }}</span>
         </a>
+    </div>
+</section>
+<section class="section-homepage">
+    <div class="title-section">
+        <h2>{{ 'homepage.research_saving' | translate }}</h2>
+    </div>
+    <div>
+        <button type="button" class="btn btn-default button-canvas" 
+            ng-repeat="fav in listFavorite" ng-click="selectedFavorite(fav)">
+            {{ fav.nameRepository }}
+        </button>
     </div>
 </section>
 <footer class="footer-app">
