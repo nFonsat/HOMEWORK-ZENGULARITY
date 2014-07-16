@@ -20,7 +20,8 @@
         "back_homepage" : "Retour à la page d'accueil",
         "commit_repository" : "Commits du projet",
         "all_repository" : "Tout les commits",
-        "committer_repository" : "Committers du projet"
+        "committer_repository" : "Committers du projet",
+        "description_repository" : "Description du projet"
     },
     "footer" : "Développé par Nicolas Fonsat - Développeur Informatique"
 }

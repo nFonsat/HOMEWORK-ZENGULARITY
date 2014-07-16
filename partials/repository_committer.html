@@ -30,6 +30,11 @@
             <a ng-href={{'#/'}}>{{ 'repository.back_homepage' | translate }}</a>
         </li>
     </ul>
+
+    <div class="title-section" ng-if="descriptionRepository">
+        <h2>{{ 'repository.description_repository' | translate }}</h2>
+        <p>{{ descriptionRepository }}</p>
+    </div>
     
     <div class="title-section">
         <h2>{{ 'repository.committer_repository' | translate }} "{{ titleRepository }}"</h2>

@@ -24,3 +24,21 @@ homeworkZengularityServices.service('colorService', [
         }
     }
 ])
+
+homeworkZengularityServices.service('Repository', [
+    function(){
+        var repository = {
+            description : ''
+        };
+
+        return {
+            getDescription : function () {
+                return repository.description;
+            },
+
+            setDescription : function (newDescription) {
+                repository.description = newDescription;
+            }
+        }
+    }
+])

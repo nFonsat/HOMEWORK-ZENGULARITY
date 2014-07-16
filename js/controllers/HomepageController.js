@@ -6,7 +6,8 @@ var homepageController = [
     '$cookieStore',
     '$cookies',
     '$location',
-    function ($scope, $http, $cookieStore, $cookies, $location){
+    'Repository',
+    function ($scope, $http, $cookieStore, $cookies, $location, Repository){
         var listerRepository = function () {
             $http.get('https://api.github.com/repositories?per_page=100').
                 success(
@@ -43,6 +44,16 @@ var homepageController = [
                         console.log(data.message);
                     }
                 );
+        }
+
+        $scope.selectedlink = function (repository) {
+            $scope.descriptionRepository = repository.description;
+
+            $scope.$watch('descriptionRepository', function (newValue) {
+                if (newValue) Repository.setDescription(newValue);
+            });
+
+            $location.path('/repository/' + repository.full_name + '/committer');
         }
 
         $scope.selectedFavorite = function (obj) {

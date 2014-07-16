@@ -41,8 +41,8 @@
     <div id="list-repository" class="list-group m-top20">
         <a class="list-group-item disabled ">{{ 'homepage.repository' | translate }}</a>
         <a class="list-group-item item-repo-app"
-        ng-repeat="repo in listRepo  | filter:searchRepository:strict" 
-        ng-href="#/repository/{{ repo.owner.login }}/{{ repo.name }}/committer">
+        ng-repeat="repo in listRepo  | filter:searchRepository:strict"
+        href="" ng-click="selectedlink(repo)">
             <span>{{ repo.name }}</span>
             <span>{{ 'homepage.author' | translate }} : {{ repo.owner.login }}</span>
         </a>

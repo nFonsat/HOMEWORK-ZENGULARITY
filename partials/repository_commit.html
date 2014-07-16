@@ -66,6 +66,11 @@
         </li>
     </ul>
 
+   <div class="title-section" ng-if="descriptionRepository">
+        <h2>{{ 'repository.description_repository' | translate }}</h2>
+        <p>{{ descriptionRepository }}</p>
+    </div>
+
     <div class="title-section">
         <h2>{{ 'repository.commit_repository' | translate }}"{{ titleRepository }}"</h2>
 

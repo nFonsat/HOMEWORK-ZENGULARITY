@@ -7,9 +7,20 @@ var repositoryCommitterController = [
     'colorService',
     'GitHubApi',
     '$cookieStore',
-    function ($scope, $routeParams, BarChart, colorService, GitHubApi, $cookieStore){
+    'Repository',
+    function ($scope, $routeParams, BarChart, colorService, GitHubApi, $cookieStore, Repository){
         $scope.titleRepository = $routeParams.nameRepository;
         $scope.userRepository = $routeParams.user;
+
+        $scope.$watch(
+            function () { 
+                return Repository.getDescription(); 
+            }, 
+            function (newValue) {
+                if (newValue) 
+                    $scope.descriptionRepository = newValue;
+            }
+        );
 
         var tabValuesBar = new Array();
         var colorBar = colorService.getColorRVB();

@@ -8,11 +8,22 @@ var repositoryCommitController = [
     '$cookieStore',
     'GitHubApi',
     '$translate',
-    function ($scope, $routeParams, LineChart, colorService, $cookieStore, GitHubApi, $translate){
+    'Repository',
+    function ($scope, $routeParams, LineChart, colorService, $cookieStore, GitHubApi, $translate, Repository){
         $scope.titleRepository = $routeParams.nameRepository;
         $scope.userRepository = $routeParams.user;
         $scope.tabYears = new Array();
         $scope.valueCalendar = $translate.instant('repository.all_repository');
+
+        $scope.$watch(
+            function () { 
+                return Repository.getDescription(); 
+            }, 
+            function (newValue) {
+                if (newValue) 
+                    $scope.descriptionRepository = newValue;
+            }
+        );
 
         var listCommit;
 
