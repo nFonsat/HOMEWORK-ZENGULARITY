@@ -18,9 +18,9 @@
         "list_committer" : "List of committer",
         "list_commit" : "List of commit",
         "back_homepage" : "Back to homepage",
-        "commit_repository" : "Commits of répository",
+        "commit_repository" : "Commits of repository",
         "all_repository" : "All commits",
-        "committer_repository" : "Committers of répository"
+        "committer_repository" : "Committers of repository"
     },
     "footer" : "Developed by Nicolas Fonsat - IT Developer"
 }

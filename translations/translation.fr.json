@@ -4,12 +4,12 @@
         "close" : "Fermer"
     },
     "homepage" : {
-        "choose_repository" : "Choisir un repository public",
+        "choose_repository" : "Choisir un projet public",
         "name_repository" : "Grâce à son nom",
         "author_repository" : "Grâce à son auteur",
-        "repository" : "Repository public",
+        "repository" : "Projet public",
         "author" : "Auteur",
-        "find_repository" : "Trouver un repository",
+        "find_repository" : "Trouver un projet",
         "research_saving" : "Recherches sauvegardées"
     },
     "repository" : {
@@ -18,9 +18,9 @@
         "list_committer" : "Liste des committers",
         "list_commit" : "Liste des commits",
         "back_homepage" : "Retour à la page d'accueil",
-        "commit_repository" : "Commits du répository",
+        "commit_repository" : "Commits du projet",
         "all_repository" : "Tout les commits",
-        "committer_repository" : "Committers du répository"
+        "committer_repository" : "Committers du projet"
     },
     "footer" : "Développé par Nicolas Fonsat - Développeur Informatique"
 }
