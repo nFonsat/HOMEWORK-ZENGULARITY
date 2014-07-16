@@ -41,8 +41,8 @@ var repositoryCommitterController = [
         function getCommit (){
             var listCommit = GitHubApi.getListCommitter();
             for (var i in listCommit) {
-                BarChart.addValue(listCommit[i].commit.length, listCommit[i].name);
-                tabValuesBar.push(listCommit[i].commit.length);
+                BarChart.addValue(listCommit[i].contributions, listCommit[i].login);
+                tabValuesBar.push(listCommit[i].contributions);
             }
             BarChart.barChart.destroy();
             BarChart.newBarChart(dataBar);

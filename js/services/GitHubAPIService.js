@@ -95,6 +95,10 @@ GitHubApiServices.service('GitHubApi', [
             return (apiGitHub + '/repos/' + userRepository + '/' + nameRepository + '/commits' + pagination);
         }
 
+        this.getUrlContributor = function (userRepository, nameRepository) {
+            return (apiGitHub + '/repos/' + userRepository + '/' + nameRepository + '/contributors' + pagination);
+        }
+
         this.getListCommitter = function () {
             return listCommitter;
         }
@@ -117,7 +121,7 @@ GitHubApiServices.service('GitHubApi', [
 
             if (isCached == 1) {
                 cacheCommitter = $cacheFactory.get('listCommitter');
-                createListCommitter(cacheCommitter.get('listCurrent'));
+                listCommitter = (cacheCommitter.get('listCurrent'));
                 fnLoadSuccess();
                 return;
             } else if (isCached == -1) {
@@ -127,7 +131,7 @@ GitHubApiServices.service('GitHubApi', [
             }
 
 
-            $http.get(this.getUrlRepository(userRepository, nameRepository)).
+            $http.get(this.getUrlContributor(userRepository, nameRepository)).
                 success(
                     function (data) {
                         cacheCommitter.put('listCurrent', data);
@@ -136,7 +140,7 @@ GitHubApiServices.service('GitHubApi', [
                             user: userRepository,
                             name: nameRepository
                         });
-                        createListCommitter(cacheCommitter.get('listCurrent'));
+                        listCommitter = (cacheCommitter.get('listCurrent'));
                         fnLoadSuccess();
                     }
                 ).
