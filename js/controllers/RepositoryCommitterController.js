@@ -59,7 +59,8 @@ var repositoryCommitterController = [
 
             var data = {
                 nameRepository: $scope.titleRepository,
-                userRepository: $scope.userRepository
+                userRepository: $scope.userRepository,
+                descriptionRepository : $scope.descriptionRepository
             }
 
             $cookieStore.put(nameCookies, data);

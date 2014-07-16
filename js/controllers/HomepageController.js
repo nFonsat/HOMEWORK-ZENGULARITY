@@ -59,6 +59,12 @@ var homepageController = [
         $scope.selectedFavorite = function (obj) {
             var name = obj.nameRepository;
             var user = obj.userRepository;
+
+            $scope.descriptionRepository = obj.descriptionRepository;
+            $scope.$watch('descriptionRepository', function (newValue) {
+                if (newValue) Repository.setDescription(newValue);
+            });
+
             $location.path('/repository/' + user + '/' + name + '/committer');
         }
 
